@@ -63,7 +63,7 @@ export default function Quiz({ quizData }: QuizProps) {
           currentQuestionIndex: quizState.currentQuestionIndex + 1,
         });
       }
-    }, 800);
+    }, 320);
   };
   
   if (showWelcome) {

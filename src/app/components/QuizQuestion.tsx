@@ -45,7 +45,7 @@ export default function QuizQuestion({
     // After a short delay, reveal the answer and notify parent
     setTimeout(() => {
       onAnswer(isCorrect, correctIndex, index);
-    }, 1000);
+    }, 400);
   };
   
   // Get style based on selection state
