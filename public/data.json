@@ -1,0 +1,14 @@
+{
+  "name": "Animal Quiz",
+  "description": "About animals",
+  "questions": [
+    {
+      "text": "Who is barking?",
+      "options": ["dog", "cat", "mouse", "rabbit"]
+    },
+    {
+      "text": "Who is jumping?",
+      "options": ["rabbit", "elephant", "rhino", "hippo"]
+    }
+  ]
+}
