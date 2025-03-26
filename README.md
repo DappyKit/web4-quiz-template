@@ -30,7 +30,7 @@ This project follows the [Web4 Apps Specification](https://github.com/DappyKit/w
 │   └── favicon.ico             # Site favicon
 ├── schema.json                 # JSON Schema for quiz data validation
 ├── .eslintrc.json              # ESLint configuration
-├── next.config.js              # Next.js configuration
+├── next.config.ts              # Next.js configuration
 ├── package.json                # Dependencies and scripts
 ├── tsconfig.json               # TypeScript configuration
 └── README.md                   # This documentation
@@ -88,6 +88,51 @@ This schema ensures your quiz data is properly structured with a name, descripti
 1. Create a new JSON file in the `public` directory
 2. Follow the schema structure (see existing examples in `public/data.json` and `public/solidity.json`)
 3. Update your app to load your custom quiz data
+
+## 🚢 Deployment
+
+### Vercel (Easiest Method)
+
+1. Push your repository to GitHub
+2. Visit [Vercel](https://vercel.com) and sign up or login
+3. Click "New Project" and import your repository
+4. Vercel will automatically detect Next.js and apply the correct build settings
+5. Click "Deploy" and your quiz will be live in seconds
+
+### Netlify
+
+1. Push your repository to GitHub
+2. Visit [Netlify](https://netlify.com) and sign up or login
+3. Click "New site from Git" and select your repository
+4. Set build command to: `npm run build`
+5. Set publish directory to: `out`
+6. Click "Deploy site"
+
+### Manual Build and Deploy
+
+#### Static Export (For any static hosting)
+
+1. Build the static site:
+   ```bash
+   npm run build
+   ```
+2. The `out` directory will contain all static files for deployment
+3. Upload the contents of the `out` directory to your web hosting service
+
+#### Test Locally
+
+Test your static build locally before deployment:
+```bash
+npx serve out
+```
+
+#### Hosting on Your Own Server
+
+1. Upload all files from the `out` directory to your web server
+2. Configure your web server to:
+   - Serve `index.html` for the root path
+   - Set proper MIME types for JavaScript and CSS files
+   - (Optional) Configure caching headers for static assets
 
 ## 🔮 Where to Next?
 
