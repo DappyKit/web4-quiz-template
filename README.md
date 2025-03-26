@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧩 Dappy Quiz Template
 
-## Getting Started
+## What's This?
 
-First, run the development server:
+This is a template for creating interactive quizzes that can be integrated with the Web4 Apps platform. The template provides a framework for building quizzes on various topics, with examples for animal knowledge and Solidity programming already included.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## ✨ Features
+
+- Fully responsive design for mobile and desktop
+- Modern UI
+- Multiple-choice question format
+- Customizable quiz content
+- Ready for Web4 Apps integration
+
+## 🌐 What is Web4 Apps?
+
+This project follows the [Web4 Apps Specification](https://github.com/DappyKit/web4-apps-specification) and can be imported into the [Web4 Apps platform](https://github.com/DappyKit/web4-apps). Web4 Apps is a platform that enables decentralized applications in a user-friendly ecosystem.
+
+## 📂 Project Structure
+
+```
+├── app/                        # Next.js app directory
+│   ├── components/             # React components
+│   ├── layout.tsx              # Main layout component
+│   ├── page.tsx                # Homepage component
+│   └── globals.css             # Global styles
+├── public/                     # Static files
+│   ├── data.json               # Animal quiz data
+│   ├── solidity.json           # Solidity quiz data
+│   └── favicon.ico             # Site favicon
+├── schema.json                 # JSON Schema for quiz data validation
+├── .eslintrc.json              # ESLint configuration
+├── next.config.js              # Next.js configuration
+├── package.json                # Dependencies and scripts
+├── tsconfig.json               # TypeScript configuration
+└── README.md                   # This documentation
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📝 Schema
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The project uses a JSON schema to validate quiz data structures:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```json
+{
+  "type": "object",
+  "properties": {
+    "name": { 
+      "type": "string" 
+    },
+    "description": { 
+      "type": "string" 
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": { "type": "string" },
+          "options": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}
+```
 
-## Learn More
+This schema ensures your quiz data is properly structured with a name, description, and questions with multiple-choice options.
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠️ Technologies
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Next.js** - React framework for building the UI
+- **TypeScript** - For type-safe code
+- **JSON Schema** - For validating quiz data
+- **Web4 Apps Integration** - For seamless deployment to the Web4 Apps platform
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🚀 Getting Started
 
-## Deploy on Vercel
+1. Clone this repository
+2. Install dependencies: `npm install`
+3. Run the development server: `npm run dev`
+4. Open [http://localhost:3000](http://localhost:3000) to see your quiz in action!
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📋 Create Your Own Quiz
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Create a new JSON file in the `public` directory
+2. Follow the schema structure (see existing examples in `public/data.json` and `public/solidity.json`)
+3. Update your app to load your custom quiz data
+
+## 🔮 Where to Next?
+
+- Deploy your quiz to the Web4 Apps platform
+- Customize the UI to match your brand
+- Add more quiz features like timers or difficulty levels
+- Share your quizzes with the world!
+
+---
+
+Happy quizzing!
