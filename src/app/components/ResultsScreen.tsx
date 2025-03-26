@@ -1,15 +1,16 @@
-import { QuizData, QuizState } from "../types";
+import { QuizData, QuizState, ThemeConfig } from "../types";
 
 interface ResultsScreenProps {
   quizData: QuizData;
   quizState: QuizState;
   onRestart: () => void;
+  themeConfig: ThemeConfig | null;
 }
 
 /**
  * Results screen showing quiz performance and options to restart
  */
-export default function ResultsScreen({ quizData, quizState, onRestart }: ResultsScreenProps) {
+export default function ResultsScreen({ quizData, quizState, onRestart, themeConfig }: ResultsScreenProps) {
   const percentage = Math.round((quizState.score / quizData.questions.length) * 100);
   
   const getResultMessage = () => {
@@ -25,10 +26,27 @@ export default function ResultsScreen({ quizData, quizState, onRestart }: Result
     if (percentage >= 50) return "text-yellow-500 dark:text-yellow-400";
     return "text-red-500 dark:text-red-400";
   };
+
+  // Generate classes based on theme config
+  const bgGradientClass = themeConfig 
+    ? `from-${themeConfig.theme.backgroundGradient.from} to-${themeConfig.theme.backgroundGradient.to}`
+    : "from-indigo-500 to-purple-600";
+  
+  const cardBgClass = themeConfig 
+    ? `bg-${themeConfig.theme.card.background} dark:bg-${themeConfig.theme.card.darkBackground}`
+    : "bg-white dark:bg-gray-800";
+
+  const buttonGradientClass = themeConfig 
+    ? `from-${themeConfig.theme.button.gradient.from} to-${themeConfig.theme.button.gradient.to} hover:from-${themeConfig.theme.button.hover.from} hover:to-${themeConfig.theme.button.hover.to}`
+    : "from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700";
+  
+  const textSecondaryClass = themeConfig 
+    ? `text-${themeConfig.theme.text.secondary} dark:text-${themeConfig.theme.text.darkSecondary}`
+    : "text-gray-600 dark:text-gray-400";
   
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-gradient-to-br from-indigo-500 to-purple-600">
-      <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-2xl dark:bg-gray-800">
+    <div className={`flex flex-col items-center justify-center min-h-screen p-4 bg-gradient-to-br ${bgGradientClass}`}>
+      <div className={`w-full max-w-md p-8 ${cardBgClass} rounded-xl shadow-2xl`}>
         <h2 className="mb-6 text-3xl font-bold text-center">Quiz Results</h2>
         
         <div className="p-4 mb-6 text-center">
@@ -36,7 +54,7 @@ export default function ResultsScreen({ quizData, quizState, onRestart }: Result
             <span className={getResultClass()}>{percentage}%</span>
           </p>
           <p className="text-xl font-medium">{getResultMessage()}</p>
-          <p className="mt-2 text-gray-600 dark:text-gray-400">
+          <p className={`mt-2 ${textSecondaryClass}`}>
             You got {quizState.score} out of {quizData.questions.length} questions correct
           </p>
         </div>
@@ -64,7 +82,7 @@ export default function ResultsScreen({ quizData, quizState, onRestart }: Result
         
         <button
           onClick={onRestart}
-          className="w-full py-3 mt-6 text-lg font-semibold text-white transition-all rounded-lg bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          className={`w-full py-3 mt-6 text-lg font-semibold text-white transition-all rounded-lg bg-gradient-to-r ${buttonGradientClass} focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2`}
         >
           Play Again
         </button>

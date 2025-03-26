@@ -1,17 +1,18 @@
 import { useState } from "react";
-import { QuizData, QuizState } from "../types";
+import { QuizData, QuizState, ThemeConfig } from "../types";
 import WelcomeScreen from "./WelcomeScreen";
 import QuizQuestion from "./QuizQuestion";
 import ResultsScreen from "./ResultsScreen";
 
 interface QuizProps {
   quizData: QuizData;
+  themeConfig: ThemeConfig | null;
 }
 
 /**
  * Main Quiz component that manages quiz state and flow
  */
-export default function Quiz({ quizData }: QuizProps) {
+export default function Quiz({ quizData, themeConfig }: QuizProps) {
   const [quizState, setQuizState] = useState<QuizState>({
     currentQuestionIndex: 0,
     score: 0,
@@ -65,9 +66,14 @@ export default function Quiz({ quizData }: QuizProps) {
       }
     }, 320);
   };
+
+  // Generate gradient class based on theme config
+  const bgGradientClass = themeConfig 
+    ? `from-${themeConfig.theme.backgroundGradient.from} to-${themeConfig.theme.backgroundGradient.to}`
+    : "from-indigo-500 to-purple-600";
   
   if (showWelcome) {
-    return <WelcomeScreen quizData={quizData} onStart={handleStart} />;
+    return <WelcomeScreen quizData={quizData} onStart={handleStart} themeConfig={themeConfig} />;
   }
   
   if (quizState.isCompleted) {
@@ -75,18 +81,20 @@ export default function Quiz({ quizData }: QuizProps) {
       <ResultsScreen 
         quizData={quizData} 
         quizState={quizState} 
-        onRestart={handleRestart} 
+        onRestart={handleRestart}
+        themeConfig={themeConfig}
       />
     );
   }
   
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-gradient-to-br from-indigo-500 to-purple-600">
+    <div className={`flex flex-col items-center justify-center min-h-screen p-4 bg-gradient-to-br ${bgGradientClass}`}>
       <QuizQuestion 
         question={quizData.questions[quizState.currentQuestionIndex]} 
         onAnswer={handleAnswer}
         questionNumber={quizState.currentQuestionIndex + 1}
         totalQuestions={quizData.questions.length}
+        themeConfig={themeConfig}
       />
     </div>
   );

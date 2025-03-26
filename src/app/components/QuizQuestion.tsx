@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Question } from "../types";
+import { Question, ThemeConfig } from "../types";
 import { shuffleOptions } from "../utils";
 
 interface QuizQuestionProps {
@@ -7,6 +7,7 @@ interface QuizQuestionProps {
   onAnswer: (isCorrect: boolean, correctIndex: number, selectedIndex: number) => void;
   questionNumber: number;
   totalQuestions: number;
+  themeConfig: ThemeConfig | null;
 }
 
 /**
@@ -16,7 +17,8 @@ export default function QuizQuestion({
   question, 
   onAnswer, 
   questionNumber,
-  totalQuestions
+  totalQuestions,
+  themeConfig
 }: QuizQuestionProps) {
   // State for shuffled options and tracking the correct answer
   const [shuffledOptions, setShuffledOptions] = useState<string[]>([]);
@@ -64,9 +66,13 @@ export default function QuizQuestion({
     
     return "bg-white dark:bg-gray-800";
   };
+
+  const cardBgClass = themeConfig 
+    ? `bg-${themeConfig.theme.card.background} dark:bg-${themeConfig.theme.card.darkBackground}`
+    : "bg-white dark:bg-gray-800";
   
   return (
-    <div className="w-full max-w-2xl p-6 mx-auto bg-white rounded-xl shadow-lg dark:bg-gray-800">
+    <div className={`w-full max-w-2xl p-6 mx-auto ${cardBgClass} rounded-xl shadow-lg`}>
       <div className="mb-4 text-sm font-medium text-gray-500 dark:text-gray-400">
         Question {questionNumber} of {totalQuestions}
       </div>

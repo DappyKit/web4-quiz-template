@@ -23,4 +23,55 @@ export function shuffleOptions<T>(array: T[]): [T[], number] {
   }
   
   return [newArray, correctIndex];
+}
+
+/**
+ * Loads the configuration from config.json
+ * @returns Promise that resolves to the theme configuration
+ */
+export async function loadConfig() {
+  try {
+    const response = await fetch('/config.json');
+    if (!response.ok) {
+      throw new Error(`Failed to load config: ${response.statusText}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error loading config:', error);
+    // Return default configuration as fallback
+    return {
+      theme: {
+        backgroundGradient: {
+          from: 'indigo-500',
+          to: 'purple-600'
+        },
+        title: {
+          gradient: {
+            from: 'purple-600',
+            to: 'indigo-500'
+          }
+        },
+        button: {
+          gradient: {
+            from: 'indigo-500',
+            to: 'purple-600'
+          },
+          hover: {
+            from: 'indigo-600',
+            to: 'purple-700'
+          }
+        },
+        card: {
+          background: 'white',
+          darkBackground: 'gray-800'
+        },
+        text: {
+          primary: 'gray-700',
+          secondary: 'gray-600',
+          darkPrimary: 'gray-300',
+          darkSecondary: 'gray-400'
+        }
+      }
+    };
+  }
 } 

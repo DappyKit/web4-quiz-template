@@ -1,0 +1,34 @@
+{
+  "theme": {
+    "backgroundGradient": {
+      "from": "indigo-500",
+      "to": "purple-600"
+    },
+    "title": {
+      "gradient": {
+        "from": "purple-600",
+        "to": "indigo-500"
+      }
+    },
+    "button": {
+      "gradient": {
+        "from": "indigo-500",
+        "to": "purple-600"
+      },
+      "hover": {
+        "from": "indigo-600",
+        "to": "purple-700"
+      }
+    },
+    "card": {
+      "background": "white",
+      "darkBackground": "gray-800"
+    },
+    "text": {
+      "primary": "gray-700",
+      "secondary": "gray-600",
+      "darkPrimary": "gray-300", 
+      "darkSecondary": "gray-400"
+    }
+  }
+} 
