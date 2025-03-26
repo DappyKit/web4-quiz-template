@@ -72,28 +72,42 @@ export default function QuizQuestion({
     : "bg-white dark:bg-gray-800";
   
   return (
-    <div className={`w-full max-w-2xl p-6 mx-auto ${cardBgClass} rounded-xl shadow-lg`}>
-      <div className="mb-4 text-sm font-medium text-gray-500 dark:text-gray-400">
-        Question {questionNumber} of {totalQuestions}
-      </div>
-      
-      <h2 className="mb-6 text-2xl font-bold text-gray-800 dark:text-white">
-        {question.text}
-      </h2>
-      
-      <div className="space-y-3">
-        {shuffledOptions.map((option, index) => (
-          <button
-            key={index}
-            onClick={() => handleOptionSelect(index)}
-            disabled={answered}
-            className={`w-full p-4 text-left transition-all border rounded-lg ${getOptionClass(
-              index
-            )} ${answered ? "" : "cursor-pointer"}`}
-          >
-            <span className="font-medium">{option}</span>
-          </button>
-        ))}
+    <div className="animated-border">
+      <div className={`w-full max-w-2xl p-6 mx-auto ${cardBgClass} rounded-xl shadow-lg relative z-10`}>
+        {/* Progress bar */}
+        <div className="mb-6 bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+          <div 
+            className="bg-gradient-to-r from-indigo-500 to-purple-600 h-2.5 rounded-full transition-all duration-300" 
+            style={{ width: `${(questionNumber / totalQuestions) * 100}%` }}
+          ></div>
+        </div>
+        
+        <div className="mb-4 text-sm font-medium text-gray-500 dark:text-gray-400 flex justify-between items-center">
+          <span>Question {questionNumber} of {totalQuestions}</span>
+          <div className="flex items-center">
+            <span className="pulse inline-block h-2 w-2 rounded-full bg-indigo-400 mr-2"></span>
+            <span>Quiz in progress</span>
+          </div>
+        </div>
+        
+        <h2 className="mb-6 text-2xl font-bold text-gray-800 dark:text-white">
+          {question.text}
+        </h2>
+        
+        <div className="space-y-3">
+          {shuffledOptions.map((option, index) => (
+            <button
+              key={index}
+              onClick={() => handleOptionSelect(index)}
+              disabled={answered}
+              className={`w-full p-4 text-left transition-all border rounded-lg ${getOptionClass(
+                index
+              )} ${answered ? "" : "hover:shadow-md hover:scale-[1.01] transform transition-all"} ${answered ? "" : "cursor-pointer"}`}
+            >
+              <span className="font-medium">{option}</span>
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );
