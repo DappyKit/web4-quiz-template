@@ -72,8 +72,8 @@ export default function QuizQuestion({
     : "bg-white dark:bg-gray-800";
   
   return (
-    <div className="animated-border">
-      <div className={`w-full max-w-2xl p-6 mx-auto ${cardBgClass} rounded-xl shadow-lg relative z-10`}>
+    <div className="animated-border w-full max-w-2xl mx-auto">
+      <div className={`w-full p-6 ${cardBgClass} rounded-xl shadow-lg relative z-10 min-h-[480px] flex flex-col`}>
         {/* Progress bar */}
         <div className="mb-6 bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
           <div 
@@ -90,11 +90,11 @@ export default function QuizQuestion({
           </div>
         </div>
         
-        <h2 className="mb-6 text-2xl font-bold text-gray-800 dark:text-white">
+        <h2 className="mb-6 text-2xl font-bold text-gray-800 dark:text-white min-h-[64px] flex items-center">
           {question.text}
         </h2>
         
-        <div className="space-y-3">
+        <div className="space-y-3 flex-grow">
           {shuffledOptions.map((option, index) => (
             <button
               key={index}
@@ -102,7 +102,7 @@ export default function QuizQuestion({
               disabled={answered}
               className={`w-full p-4 text-left transition-all border rounded-lg ${getOptionClass(
                 index
-              )} ${answered ? "" : "hover:shadow-md hover:scale-[1.01] transform transition-all"} ${answered ? "" : "cursor-pointer"}`}
+              )} ${answered ? "" : "hover:shadow-md hover:scale-[1.01] transform transition-all"} ${answered ? "" : "cursor-pointer"} min-h-[56px]`}
             >
               <span className="font-medium">{option}</span>
             </button>
