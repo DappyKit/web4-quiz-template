@@ -1,0 +1,94 @@
+{
+  "name": "Solidity Quiz",
+  "description": "Test your knowledge of Solidity programming language",
+  "questions": [
+    {
+      "text": "What is Solidity used for?",
+      "options": ["Smart contracts development", "Front-end development", "Mobile app development", "Database management"]
+    },
+    {
+      "text": "Which blockchain was Solidity primarily designed for?",
+      "options": ["Ethereum", "Bitcoin", "Solana", "Cardano"]
+    },
+    {
+      "text": "What is the file extension for Solidity files?",
+      "options": [".sol", ".solidity", ".eth", ".smart"]
+    },
+    {
+      "text": "Which data type is used to store whole numbers in Solidity?",
+      "options": ["uint", "float", "number", "integer"]
+    },
+    {
+      "text": "What does ABI stand for in Solidity?",
+      "options": ["Application Binary Interface", "Advanced Blockchain Interface", "Automated Binary Integration", "Application Blockchain Interface"]
+    },
+    {
+      "text": "Which function modifier restricts function access to the contract owner?",
+      "options": ["onlyOwner", "restricted", "adminOnly", "ownerOnly"]
+    },
+    {
+      "text": "What is the default visibility of state variables in Solidity?",
+      "options": ["internal", "public", "private", "external"]
+    },
+    {
+      "text": "Which keyword is used to inherit from another contract?",
+      "options": ["is", "extends", "inherits", "implements"]
+    },
+    {
+      "text": "What is a fallback function in Solidity?",
+      "options": ["Function that executes when no other function matches", "Function that handles errors", "Function that returns funds", "Function that initializes the contract"]
+    },
+    {
+      "text": "Which of these is NOT a valid value type in Solidity?",
+      "options": ["char", "bool", "address", "uint"]
+    },
+    {
+      "text": "Which statement is used to revert a transaction with an error message?",
+      "options": ["require", "assert", "revert", "throw"]
+    },
+    {
+      "text": "What is the gas limit in Ethereum?",
+      "options": ["Maximum amount of gas that can be spent on a transaction", "Minimum gas required for a transaction", "Gas price in wei", "Average gas used by a contract"]
+    },
+    {
+      "text": "Which function is automatically called once during contract deployment?",
+      "options": ["constructor", "init", "setup", "create"]
+    },
+    {
+      "text": "What are events used for in Solidity?",
+      "options": ["Logging to the blockchain", "Handling errors", "Transferring tokens", "Creating new contracts"]
+    },
+    {
+      "text": "What does the 'payable' keyword allow a function to do?",
+      "options": ["Receive Ether", "Send tokens", "Modify state variables", "Access private functions"]
+    },
+    {
+      "text": "Which data structure in Solidity maps addresses to values?",
+      "options": ["mapping", "array", "struct", "list"]
+    },
+    {
+      "text": "What is the default value of a bool in Solidity?",
+      "options": ["false", "true", "null", "undefined"]
+    },
+    {
+      "text": "Which function is used to self-destruct a contract and send remaining ETH to an address?",
+      "options": ["selfdestruct", "destroy", "delete", "remove"]
+    },
+    {
+      "text": "What does the 'view' function modifier indicate?",
+      "options": ["Function doesn't modify state", "Function is visible to all", "Function can receive ETH", "Function is private"]
+    },
+    {
+      "text": "How do you declare a constant in Solidity?",
+      "options": ["constant", "const", "immutable", "final"]
+    },
+    {
+      "text": "Which of these is not a valid way to send ETH from a contract?",
+      "options": ["address.pay(amount)", "address.transfer(amount)", "address.send(amount)", "payable(address).transfer(amount)"]
+    },
+    {
+      "text": "What is a reentrancy attack?",
+      "options": ["Calling back into a contract before the first call completes", "DOS attack on a smart contract", "Overflow attack on integers", "Impersonating a contract"]
+    }
+  ]
+} 

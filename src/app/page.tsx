@@ -16,6 +16,7 @@ export default function Home() {
     async function fetchQuizData() {
       try {
         const response = await fetch("/data.json");
+        // const response = await fetch("/solidity.json");
         if (!response.ok) {
           throw new Error(`Failed to fetch data: ${response.statusText}`);
         }
