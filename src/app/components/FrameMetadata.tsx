@@ -8,11 +8,11 @@ import Script from "next/script";
  */
 export default function FrameMetadata() {
   const pathname = usePathname();
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://dappy-quiz-template.vercel.app";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://web4-quiz-template.vercel.app";
   
   // Ensure our frame image has the correct aspect ratio (3:2)
-  const frameImageUrl = `${baseUrl}/frame-image.png`;
-  const splashImageUrl = `${baseUrl}/splash-image.png`;
+  const frameImageUrl = `${baseUrl}/frame-image.svg`;
+  const splashImageUrl = `${baseUrl}/splash-image.svg`;
   
   // Since we can't directly modify head in client components with App Router,
   // we'll use a client-side script to add the meta tags

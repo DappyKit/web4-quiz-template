@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://dappy-quiz-template.vercel.app";
-const frameImageUrl = `${baseUrl}/frame-image.png`;
-const splashImageUrl = `${baseUrl}/splash-image.png`;
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://web4-quiz-template.vercel.app";
+const frameImageUrl = `${baseUrl}/frame-image.svg`;
+const splashImageUrl = `${baseUrl}/splash-image.svg`;
 
 /**
  * Application metadata including Farcaster Frame metadata
@@ -22,4 +22,4 @@ export const metadata: Metadata = {
     "fc:frame:button:1:splashImageUrl": splashImageUrl,
     "fc:frame:button:1:splashBackgroundColor": "#6366f1"
   },
-}; 
+};
