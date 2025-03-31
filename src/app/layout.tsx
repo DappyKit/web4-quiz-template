@@ -76,7 +76,7 @@ export default function RootLayout({
         </div>
         
         {/* Footer */}
-        <footer className="fixed bottom-0 left-0 w-full p-2 flex justify-center items-center text-xs text-gray-500 dark:text-gray-400 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm z-10">
+        <footer className="fixed bottom-0 left-0 w-full p-2 pb-6 flex justify-center items-center text-xs text-gray-500 dark:text-gray-400 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm z-10">
           <p className="text-center">
             <span className="pulse inline-block h-2 w-2 rounded-full bg-green-400 mr-2"></span>
             Powered by DappyKit Quiz Engine
