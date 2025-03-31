@@ -1,0 +1,19 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#a855f7" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="200" height="200" fill="url(#bg)" />
+  
+  <!-- Quiz icon -->
+  <circle cx="100" cy="80" r="40" fill="#ffffff" opacity="0.25" />
+  <path d="M100 60 L100 100 M80 80 L120 80" stroke="#ffffff" stroke-width="8" stroke-linecap="round" />
+  
+  <!-- Text -->
+  <text x="100" y="150" font-family="'Geist', sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#ffffff">Quiz Game</text>
+</svg> 

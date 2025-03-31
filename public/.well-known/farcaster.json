@@ -1,0 +1,25 @@
+{
+  "accountAssociation": {
+    "header": "YOUR_JFS_HEADER",
+    "payload": "YOUR_PAYLOAD_WITH_DOMAIN",
+    "signature": "YOUR_SIGNATURE"
+  },
+  "frame": {
+    "version": "1",
+    "name": "DappyKit Quiz",
+    "homeUrl": "https://dappy-quiz-template.vercel.app",
+    "iconUrl": "https://dappy-quiz-template.vercel.app/splash-image.svg",
+    "imageUrl": "https://dappy-quiz-template.vercel.app/frame-image.svg",
+    "buttonTitle": "Start Quiz",
+    "splashImageUrl": "https://dappy-quiz-template.vercel.app/splash-image.svg",
+    "splashBackgroundColor": "#6366f1"
+  },
+  "triggers": [
+    {
+      "type": "cast",
+      "id": "quiz-results",
+      "url": "https://dappy-quiz-template.vercel.app/api/cast-trigger",
+      "name": "View Quiz Results"
+    }
+  ]
+} 

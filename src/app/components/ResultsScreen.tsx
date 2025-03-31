@@ -1,4 +1,5 @@
 import { QuizData, QuizState, ThemeConfig } from "../types";
+import { useFarcaster } from "./FarcasterProvider";
 
 interface ResultsScreenProps {
   quizData: QuizData;
@@ -11,6 +12,7 @@ interface ResultsScreenProps {
  * Results screen showing quiz performance and options to restart
  */
 export default function ResultsScreen({ quizData, quizState, onRestart, themeConfig }: ResultsScreenProps) {
+  const { context, sdk } = useFarcaster();
   const percentage = Math.round((quizState.score / quizData.questions.length) * 100);
   
   const getResultMessage = () => {
@@ -25,6 +27,44 @@ export default function ResultsScreen({ quizData, quizState, onRestart, themeCon
     if (percentage >= 70) return "text-blue-500 dark:text-blue-400";
     if (percentage >= 50) return "text-yellow-500 dark:text-yellow-400";
     return "text-red-500 dark:text-red-400";
+  };
+
+  /**
+   * Handles sharing quiz results via Farcaster
+   */
+  const handleShare = async () => {
+    if (!sdk) return;
+    
+    try {
+      // Build the share message
+      const shareMessage = `I scored ${percentage}% on "${quizData.name}" quiz! ${getEmoji()}`;
+      
+      // Use a notification to share the result if supported
+      if (context?.client?.notificationDetails) {
+        await sdk.showToast({
+          text: "Sharing your result...",
+          type: "success"
+        });
+        
+        // In a real implementation, you would send a POST request to the notification URL
+        console.log("Would send notification with message:", shareMessage);
+      } else {
+        // Fallback method if notifications not supported
+        await sdk.showToast({
+          text: "Notifications not enabled. Result copied to clipboard!",
+          type: "info"
+        });
+        
+        // Copy to clipboard as fallback
+        navigator.clipboard.writeText(shareMessage);
+      }
+    } catch (error) {
+      console.error("Error sharing result:", error);
+      await sdk.showToast({
+        text: "Failed to share result",
+        type: "error"
+      });
+    }
   };
 
   // Generate classes based on theme config
@@ -67,6 +107,25 @@ export default function ResultsScreen({ quizData, quizState, onRestart, themeCon
       
       <div className="animated-border">
         <div className={`w-full max-w-md p-8 ${cardBgClass} rounded-xl shadow-2xl relative z-10`}>
+          {/* User info section if available */}
+          {context?.user && (
+            <div className="flex items-center mb-4 p-2 rounded-lg bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900">
+              {context.user.pfpUrl && (
+                <img 
+                  src={context.user.pfpUrl} 
+                  alt={context.user.displayName || `User ${context.user.fid}`}
+                  className="w-10 h-10 rounded-full mr-3 border-2 border-indigo-200 dark:border-indigo-700"
+                />
+              )}
+              <div>
+                <p className="font-medium">
+                  {context.user.displayName || context.user.username || `User ${context.user.fid}`}
+                </p>
+                <p className={`text-xs ${textSecondaryClass}`}>FID: {context.user.fid}</p>
+              </div>
+            </div>
+          )}
+          
           <div className="flex justify-center mb-4">
             <div className="w-20 h-20 rounded-full bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center text-white text-4xl shadow-lg">
               {getEmoji()}
@@ -106,12 +165,21 @@ export default function ResultsScreen({ quizData, quizState, onRestart, themeCon
             })}
           </div>
           
-          <button
-            onClick={onRestart}
-            className={`w-full py-3 mt-6 text-lg font-semibold text-white transition-all rounded-lg bg-gradient-to-r ${buttonGradientClass} focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 shine`}
-          >
-            Play Again
-          </button>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-6">
+            <button
+              onClick={onRestart}
+              className={`py-3 text-lg font-semibold text-white transition-all rounded-lg bg-gradient-to-r ${buttonGradientClass} focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 shine`}
+            >
+              Play Again
+            </button>
+            
+            <button
+              onClick={handleShare}
+              className="py-3 text-lg font-semibold text-indigo-700 dark:text-indigo-300 border border-indigo-300 dark:border-indigo-700 transition-all rounded-lg hover:bg-indigo-50 dark:hover:bg-indigo-900/30 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            >
+              Share Results
+            </button>
+          </div>
         </div>
       </div>
     </div>

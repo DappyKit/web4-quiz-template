@@ -1,4 +1,5 @@
 import { QuizData, ThemeConfig } from "../types";
+import { useFarcaster } from "./FarcasterProvider";
 
 interface WelcomeScreenProps {
   quizData: QuizData;
@@ -10,6 +11,8 @@ interface WelcomeScreenProps {
  * Game-like welcome screen shown before starting the quiz
  */
 export default function WelcomeScreen({ quizData, onStart, themeConfig }: WelcomeScreenProps) {
+  const { context, loading } = useFarcaster();
+  
   // Generate classes based on theme config
   const bgGradientClass = themeConfig 
     ? `from-${themeConfig.theme.backgroundGradient.from} to-${themeConfig.theme.backgroundGradient.to}`
@@ -44,6 +47,25 @@ export default function WelcomeScreen({ quizData, onStart, themeConfig }: Welcom
       
       <div className="animated-border">
         <div className={`w-full max-w-md p-8 mx-auto ${cardBgClass} rounded-xl shadow-2xl transform transition-all hover:scale-105 relative z-10`}>
+          {/* User info section if available */}
+          {context?.user && (
+            <div className="flex items-center mb-6 p-2 rounded-lg bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900">
+              {context.user.pfpUrl && (
+                <img 
+                  src={context.user.pfpUrl} 
+                  alt={context.user.displayName || `User ${context.user.fid}`}
+                  className="w-10 h-10 rounded-full mr-3 border-2 border-indigo-200 dark:border-indigo-700"
+                />
+              )}
+              <div className="text-left">
+                <p className="font-medium">
+                  Welcome, {context.user.displayName || context.user.username || `User ${context.user.fid}`}!
+                </p>
+                <p className={`text-xs ${textSecondaryClass}`}>Ready to test your knowledge?</p>
+              </div>
+            </div>
+          )}
+          
           {/* Icon above title */}
           <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center shadow-lg">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -67,9 +89,17 @@ export default function WelcomeScreen({ quizData, onStart, themeConfig }: Welcom
           <button
             onClick={onStart}
             className={`w-full py-3 text-lg font-semibold text-white transition-all rounded-lg bg-gradient-to-r ${buttonGradientClass} focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 shine`}
+            disabled={loading}
           >
-            Start Quiz!
+            {loading ? "Loading..." : "Start Quiz!"}
           </button>
+          
+          {/* Frame info if launched from a frame */}
+          {context?.location?.type === "cast_embed" && (
+            <div className="mt-4 px-3 py-2 text-xs bg-indigo-50 dark:bg-indigo-900/30 rounded-lg border border-indigo-200 dark:border-indigo-800">
+              <p>Launched via Frame from cast by FID: {context.location.cast.fid}</p>
+            </div>
+          )}
         </div>
       </div>
     </div>

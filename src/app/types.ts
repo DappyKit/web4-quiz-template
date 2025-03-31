@@ -25,6 +25,73 @@ export interface QuizState {
   isCompleted: boolean;
 }
 
+/**
+ * Farcaster user context
+ */
+export interface FarcasterUser {
+  fid: number;
+  username?: string;
+  displayName?: string;
+  pfpUrl?: string;
+}
+
+/**
+ * Farcaster client context
+ */
+export interface FarcasterClient {
+  clientFid: number;
+  added: boolean;
+  safeAreaInsets?: {
+    top: number;
+    bottom: number;
+    left: number;
+    right: number;
+  };
+  notificationDetails?: {
+    url: string;
+    token: string;
+  };
+}
+
+/**
+ * Farcaster location context for cast embeds
+ */
+export interface CastEmbedLocationContext {
+  type: 'cast_embed';
+  cast: {
+    fid: number;
+    hash: string;
+  };
+}
+
+/**
+ * Farcaster location context for notifications
+ */
+export interface NotificationLocationContext {
+  type: 'notification';
+  notification: {
+    notificationId: string;
+    title: string;
+    body: string;
+  };
+}
+
+/**
+ * Farcaster location context for launcher
+ */
+export interface LauncherLocationContext {
+  type: 'launcher';
+}
+
+/**
+ * Farcaster SDK Context
+ */
+export interface FarcasterContext {
+  user: FarcasterUser;
+  client: FarcasterClient;
+  location?: CastEmbedLocationContext | NotificationLocationContext | LauncherLocationContext;
+}
+
 export interface ThemeConfig {
   theme: {
     backgroundGradient: {

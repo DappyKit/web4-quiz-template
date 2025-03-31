@@ -1,0 +1,94 @@
+{
+  "name": "Animal Quiz",
+  "description": "About animals",
+  "questions": [
+    {
+      "text": "Who is barking?",
+      "options": ["dog", "cat", "mouse", "rabbit"]
+    },
+    {
+      "text": "Who is jumping?",
+      "options": ["rabbit", "elephant", "rhino", "hippo"]
+    },
+    {
+      "text": "Which animal is known as the king of the jungle?",
+      "options": ["lion", "tiger", "elephant", "giraffe"]
+    },
+    {
+      "text": "Which bird cannot fly?",
+      "options": ["penguin", "sparrow", "eagle", "hawk"]
+    },
+    {
+      "text": "Which animal sleeps upside down?",
+      "options": ["bat", "sloth", "koala", "owl"]
+    },
+    {
+      "text": "Which is the tallest animal?",
+      "options": ["giraffe", "elephant", "hippo", "rhino"]
+    },
+    {
+      "text": "Which animal has a pouch to carry babies?",
+      "options": ["kangaroo", "zebra", "wolf", "bear"]
+    },
+    {
+      "text": "Which animal changes color to blend with surroundings?",
+      "options": ["chameleon", "snake", "frog", "lizard"]
+    },
+    {
+      "text": "Which is the fastest land animal?",
+      "options": ["cheetah", "leopard", "lion", "tiger"]
+    },
+    {
+      "text": "Which animal has black and white stripes?",
+      "options": ["zebra", "tiger", "panda", "cow"]
+    },
+    {
+      "text": "Which animal makes honey?",
+      "options": ["bee", "ant", "wasp", "butterfly"]
+    },
+    {
+      "text": "Which animal can live both in water and on land?",
+      "options": ["frog", "fish", "shark", "whale"]
+    },
+    {
+      "text": "Which animal has a very long neck?",
+      "options": ["giraffe", "elephant", "zebra", "hippo"]
+    },
+    {
+      "text": "Which animal has a shell?",
+      "options": ["turtle", "snake", "lizard", "frog"]
+    },
+    {
+      "text": "Which animal is known for its wisdom?",
+      "options": ["owl", "eagle", "parrot", "crow"]
+    },
+    {
+      "text": "Which animal has a trunk?",
+      "options": ["elephant", "giraffe", "rhino", "hippo"]
+    },
+    {
+      "text": "Which animal says 'meow'?",
+      "options": ["cat", "dog", "cow", "sheep"]
+    },
+    {
+      "text": "Which animal says 'moo'?",
+      "options": ["cow", "goat", "sheep", "pig"]
+    },
+    {
+      "text": "Which animal is known for eating carrots?",
+      "options": ["rabbit", "hamster", "squirrel", "mouse"]
+    },
+    {
+      "text": "Which animal has a mane?",
+      "options": ["lion", "tiger", "cheetah", "panther"]
+    },
+    {
+      "text": "Which animal has a hump?",
+      "options": ["camel", "horse", "donkey", "zebra"]
+    },
+    {
+      "text": "Which animal is the largest?",
+      "options": ["blue whale", "elephant", "giraffe", "shark"]
+    }
+  ]
+}
