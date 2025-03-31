@@ -52,52 +52,52 @@ export function FarcasterProvider({ children }: FarcasterProviderProps) {
     // Only run initialization once
     if (sdkInstance) return;
 
-    const initializeSdk = async () => {
-      try {
-        // Initialize the SDK
-        // Use unknown as an intermediary cast to avoid TypeScript errors
-        const frameSDK = sdk as unknown as SDK;
-        setSdkInstance(frameSDK);
-
-        // Get context information about the user and client
-        const contextData = frameSDK.context;
-        setContext(contextData);
-
-        // Set up event listeners
-        frameSDK.on("frameAdded", () => {
-          console.log("Frame added by user");
-          // Update the context to reflect the change
-          setContext((prev) => 
-            prev ? { ...prev, client: { ...prev.client, added: true }} : null
-          );
-        });
-
-        frameSDK.on("frameRemoved", () => {
-          console.log("Frame removed by user");
-          // Update the context to reflect the change
-          setContext((prev) => 
-            prev ? { ...prev, client: { ...prev.client, added: false }} : null
-          );
-        });
-
-        frameSDK.on("notificationsEnabled", () => {
-          console.log("Notifications enabled");
-          // You would typically refresh the context here
-        });
-
-        frameSDK.on("notificationsDisabled", () => {
-          console.log("Notifications disabled");
-          // You would typically refresh the context here
-        });
-
-        setLoading(false);
-      } catch (error) {
-        console.error("Error initializing Farcaster SDK:", error);
-        setError("Failed to initialize Farcaster SDK");
-        setLoading(false);
-      }
-    };
-
+    // const initializeSdk = async () => {
+    //   try {
+    //     // Initialize the SDK
+    //     // Use unknown as an intermediary cast to avoid TypeScript errors
+    //     const frameSDK = sdk as unknown as SDK;
+    //     setSdkInstance(frameSDK);
+    //
+    //     // Get context information about the user and client
+    //     const contextData = frameSDK.context;
+    //     setContext(contextData);
+    //
+    //     // Set up event listeners
+    //     frameSDK.on("frameAdded", () => {
+    //       console.log("Frame added by user");
+    //       // Update the context to reflect the change
+    //       setContext((prev) =>
+    //         prev ? { ...prev, client: { ...prev.client, added: true }} : null
+    //       );
+    //     });
+    //
+    //     frameSDK.on("frameRemoved", () => {
+    //       console.log("Frame removed by user");
+    //       // Update the context to reflect the change
+    //       setContext((prev) =>
+    //         prev ? { ...prev, client: { ...prev.client, added: false }} : null
+    //       );
+    //     });
+    //
+    //     frameSDK.on("notificationsEnabled", () => {
+    //       console.log("Notifications enabled");
+    //       // You would typically refresh the context here
+    //     });
+    //
+    //     frameSDK.on("notificationsDisabled", () => {
+    //       console.log("Notifications disabled");
+    //       // You would typically refresh the context here
+    //     });
+    //
+    //     setLoading(false);
+    //   } catch (error) {
+    //     console.error("Error initializing Farcaster SDK:", error);
+    //     setError("Failed to initialize Farcaster SDK");
+    //     setLoading(false);
+    //   }
+    // };
+    //
     // initializeSdk().then();
   }, [sdkInstance]);
 
