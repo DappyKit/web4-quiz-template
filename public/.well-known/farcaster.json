@@ -1,8 +1,8 @@
 {
   "accountAssociation": {
-    "header": "YOUR_JFS_HEADER",
-    "payload": "YOUR_PAYLOAD_WITH_DOMAIN",
-    "signature": "YOUR_SIGNATURE"
+    "header": "eyJmaWQiOjM1NDY2OSwidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweERiMGM2QzI3QzJDMWVhNDE5M2Q4MDhiQUIyNWJlMEZjMjdmYTQ4NjcifQ",
+    "payload": "eyJkb21haW4iOiJ3ZWI0LXF1aXotdGVtcGxhdGUudmVyY2VsLmFwcCJ9",
+    "signature": "MHhmZWJjMzQ3ZmZjYjQzMTgwMzcwMjQwNWY4NjNiM2VkMDI3MGRhZDhmMDJlN2NlZTg3ZWY5M2E3MDQ1ZmZmZjRlMTgzNmI4YmFhZGVhMzhjNDhlYjFjNWU3YzVkMTg3MjczYjI1ZDE5MjFjYTRhY2I5MTBhNTdlOTYzMmRhYjI5NjFi"
   },
   "frame": {
     "version": "1",
@@ -22,4 +22,4 @@
       "name": "View Quiz Results"
     }
   ]
-} 
+}
