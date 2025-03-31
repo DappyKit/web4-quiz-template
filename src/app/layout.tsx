@@ -33,6 +33,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta name="fc:frame" content={`{
+          "version": "next",
+          "imageUrl": "https://web4-quiz-template.vercel.app/frame-image.png",
+          "aspectRatio": "3:2",
+          "button": {
+            "title": "Start Quiz",
+            "action": {
+              "type": "launch_frame",
+              "name": "DappyKit Quiz",
+              "url": "https://web4-quiz-template.vercel.app",
+              "splashImageUrl": "https://web4-quiz-template.vercel.app/splash.png",
+              "splashBackgroundColor": "#6366f1"
+            }
+          }
+        }`} />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-dots`}
       >
