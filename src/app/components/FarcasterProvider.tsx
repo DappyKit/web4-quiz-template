@@ -98,7 +98,7 @@ export function FarcasterProvider({ children }: FarcasterProviderProps) {
       }
     };
 
-    initializeSdk();
+    // initializeSdk().then();
   }, [sdkInstance]);
 
   // Clean up event listeners on unmount
