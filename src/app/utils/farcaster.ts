@@ -9,13 +9,12 @@
  * @returns URL string for the intent
  */
 export function generateShareIntent(text: string, appUrl: string): string {
-  // Manually build the URL with proper encoding
-  // Warpcast has special handling for array parameters
+  // Encode the text and URL parameters properly
   const encodedText = encodeURIComponent(text);
   const encodedEmbed = encodeURIComponent(appUrl);
   
-  // Format URL with correct encoding that matches Warpcast's expectations
-  return `https://warpcast.com/~/compose?text=${encodedText}&embeds[]=${encodedEmbed}`;
+  // Use a simpler URL format that avoids array parameter issues
+  return `https://warpcast.com/~/compose?text=${encodedText}&embed=${encodedEmbed}`;
 }
 
 /**
