@@ -1,7 +1,8 @@
 import { QuizData, QuizState, ThemeConfig } from "../types";
 import { useFarcaster } from "./FarcasterProvider";
 import { createShareText, generateShareIntent, getAppUrl } from "../utils/farcaster";
-import { logSDKEvent, isFarcasterEnvironment } from "../utils/sdk-debug";
+import { logSDKEvent } from "../utils/sdk-debug";
+import { useAccount } from "wagmi";
 
 interface ResultsScreenProps {
   quizData: QuizData;
@@ -15,8 +16,10 @@ interface ResultsScreenProps {
  */
 export default function ResultsScreen({ quizData, quizState, onRestart, themeConfig }: ResultsScreenProps) {
   const { context, sdk } = useFarcaster();
+  const { address } = useAccount();
   const percentage = Math.round((quizState.score / quizData.questions.length) * 100);
-  const isInFarcaster = isFarcasterEnvironment();
+  // Check if Ethereum address is available from wallet connection
+  const hasEthAddress = Boolean(address);
   
   const getResultMessage = () => {
     if (percentage >= 90) return "Excellent!";
@@ -146,12 +149,12 @@ export default function ResultsScreen({ quizData, quizState, onRestart, themeCon
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
             <button
               onClick={onRestart}
-              className={`py-3 text-lg font-semibold text-white transition-all rounded-lg bg-gradient-to-r ${buttonGradientClass} focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 shine ${!isInFarcaster ? 'sm:col-span-2' : ''}`}
+              className={`py-3 text-lg font-semibold text-white transition-all rounded-lg bg-gradient-to-r ${buttonGradientClass} focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 shine ${!hasEthAddress ? 'sm:col-span-2' : ''}`}
             >
               Play Again
             </button>
             
-            {isInFarcaster && (
+            {hasEthAddress && (
               <button
                 onClick={handleShare}
                 className="py-3 text-lg font-semibold text-indigo-700 dark:text-indigo-300 border border-indigo-300 dark:border-indigo-700 transition-all rounded-lg hover:bg-indigo-50 dark:hover:bg-indigo-900/30 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
