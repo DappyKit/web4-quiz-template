@@ -11,6 +11,7 @@ This is a template for creating interactive quizzes that can be integrated with 
 - Multiple-choice question format
 - Customizable quiz content
 - Ready for Web4 Apps integration
+- Farcaster integration out of the box
 
 ## 🌐 What is Web4 Apps?
 
@@ -75,6 +76,7 @@ This schema ensures your quiz data is properly structured with a name, descripti
 - **TypeScript** - For type-safe code
 - **JSON Schema** - For validating quiz data
 - **Web4 Apps Integration** - For seamless deployment to the Web4 Apps platform
+- **Farcaster** - Native integration with Farcaster social protocol
 
 ## 🚀 Getting Started
 
@@ -140,6 +142,7 @@ npx serve out
 - Customize the UI to match your brand
 - Add more quiz features like timers or difficulty levels
 - Share your quizzes with the world!
+- Leverage the built-in Farcaster integration to share your quizzes on Farcaster
 
 ---
 
