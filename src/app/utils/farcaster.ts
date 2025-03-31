@@ -9,13 +9,14 @@
  * @returns URL string for the intent
  */
 export function generateShareIntent(text: string, appUrl: string): string {
-  // Encode the text and URL parameters
-  const encodedText = encodeURIComponent(text);
-  const encodedEmbed = encodeURIComponent(appUrl);
+  // Build the intent URL with properly encoded parameters
+  // Using URLSearchParams to ensure proper encoding
+  const params = new URLSearchParams();
+  params.append('text', text);
+  params.append('embeds[]', appUrl);
   
-  // Build the intent URL with the text and one embed (the app)
-  // Farcaster intent URL format: https://warpcast.com/~/compose?text=...&embeds[]=...
-  return `https://warpcast.com/~/compose?text=${encodedText}&embeds[]=${encodedEmbed}`;
+  // Return the properly formatted intent URL
+  return `https://warpcast.com/~/compose?${params.toString()}`;
 }
 
 /**
