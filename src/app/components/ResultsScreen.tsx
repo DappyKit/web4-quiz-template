@@ -1,5 +1,7 @@
 import { QuizData, QuizState, ThemeConfig } from "../types";
 import { useFarcaster } from "./FarcasterProvider";
+import { createShareText, generateShareIntent, getAppUrl } from "../utils/farcaster";
+import { logSDKEvent } from "../utils/sdk-debug";
 
 interface ResultsScreenProps {
   quizData: QuizData;
@@ -36,34 +38,30 @@ export default function ResultsScreen({ quizData, quizState, onRestart, themeCon
     if (!sdk) return;
     
     try {
-      // Build the share message
-      const shareMessage = `I scored ${percentage}% on "${quizData.name}" quiz! ${getEmoji()}`;
+      // Create share text with quiz name, score, and emoji
+      const shareText = createShareText(
+        quizData.name, 
+        quizState.score, 
+        quizData.questions.length
+      );
       
-      // Use a notification to share the result if supported
-      if (context?.client?.notificationDetails) {
-        await sdk.showToast({
-          text: "Sharing your result...",
-          type: "success"
-        });
-        
-        // In a real implementation, you would send a POST request to the notification URL
-        console.log("Would send notification with message:", shareMessage);
-      } else {
-        // Fallback method if notifications not supported
-        await sdk.showToast({
-          text: "Notifications not enabled. Result copied to clipboard!",
-          type: "info"
-        });
-        
-        // Copy to clipboard as fallback
-        navigator.clipboard.writeText(shareMessage);
-      }
+      // Get the app URL to embed
+      const appUrl = getAppUrl();
+      
+      // Generate the Farcaster intent URL
+      const intentUrl = generateShareIntent(shareText, appUrl);
+      
+      logSDKEvent('Sharing quiz results', { percentage, quizName: quizData.name });
+      
+      // Open the URL with Farcaster SDK
+      await sdk.actions.openUrl(intentUrl);
+      
+      logSDKEvent('Share intent opened', { intentUrl });
     } catch (error) {
       console.error("Error sharing result:", error);
-      await sdk.showToast({
-        text: "Failed to share result",
-        type: "error"
-      });
+      logSDKEvent('Error sharing results', { error });
+      // Show an alert as fallback since showToast is not available
+      alert("Unable to share results. Try again later.");
     }
   };
 

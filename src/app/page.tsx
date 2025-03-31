@@ -4,11 +4,14 @@ import { useState, useEffect } from "react";
 import Quiz from "./components/Quiz";
 import { QuizData, ThemeConfig } from "./types";
 import { loadConfig } from "./utils";
+import { useFarcaster } from "./components/FarcasterProvider";
+import { logSDKEvent } from "./utils/sdk-debug";
 
 /**
  * Main page component that loads quiz data and renders the Quiz component
  */
 export default function Home() {
+  const { sdk } = useFarcaster();
   const [quizData, setQuizData] = useState<QuizData | null>(null);
   const [themeConfig, setThemeConfig] = useState<ThemeConfig | null>(null);
   const [loading, setLoading] = useState(true);
@@ -17,6 +20,7 @@ export default function Home() {
   useEffect(() => {
     async function fetchData() {
       try {
+        logSDKEvent('Fetching quiz data');
         // Load both quiz data and theme config in parallel
         const [quizResponse, config] = await Promise.all([
           fetch("/data.json"),
@@ -30,9 +34,11 @@ export default function Home() {
         const data = await quizResponse.json();
         setQuizData(data);
         setThemeConfig(config);
+        logSDKEvent('Quiz data loaded successfully');
         setLoading(false);
       } catch (error) {
         console.error("Error loading data:", error);
+        logSDKEvent('Error loading quiz data', error);
         setError("Failed to load data. Please try again later.");
         setLoading(false);
       }
@@ -40,6 +46,19 @@ export default function Home() {
 
     fetchData();
   }, []);
+
+  // Call ready() when content is loaded
+  useEffect(() => {
+    // Only call ready() when data is loaded and we're not in an error state
+    if (!loading && !error && quizData && sdk?.actions?.ready) {
+      logSDKEvent('Page content loaded, calling sdk.actions.ready()');
+      // Call ready to indicate the UI is fully loaded and ready to display
+      sdk.actions.ready().catch(err => {
+        console.error("Error calling sdk.actions.ready() in page component:", err);
+        logSDKEvent('Error calling sdk.actions.ready() in page component', err);
+      });
+    }
+  }, [loading, error, quizData, sdk]);
 
   // Generate gradient class based on theme config
   const bgGradientClass = themeConfig 
