@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState, ReactNode } from "react";
-import sdk from "@farcaster/frame-sdk";
+// import sdk from "@farcaster/frame-sdk";
 import { FarcasterContext } from "../types";
 
 // Define the SDK interface with the methods we need
@@ -43,10 +43,14 @@ interface FarcasterProviderProps {
  * @param children - Child components
  */
 export function FarcasterProvider({ children }: FarcasterProviderProps) {
-  const [sdkInstance, setSdkInstance] = useState<SDK | null>(null);
-  const [context, setContext] = useState<FarcasterContext | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [sdkInstance] = useState<SDK | null>(null);
+  const [context] = useState<FarcasterContext | null>(null);
+  const [loading] = useState(true);
+  const [error] = useState<string | null>(null);
+  // const [sdkInstance, setSdkInstance] = useState<SDK | null>(null);
+  // const [context, setContext] = useState<FarcasterContext | null>(null);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     // Only run initialization once
