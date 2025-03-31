@@ -1,5 +1,6 @@
 import { QuizData, ThemeConfig } from "../types";
 import { useFarcaster } from "./FarcasterProvider";
+import ConnectWallet from "./ConnectWallet";
 
 interface WelcomeScreenProps {
   quizData: QuizData;
@@ -84,6 +85,11 @@ export default function WelcomeScreen({ quizData, onStart, themeConfig }: Welcom
             <p className={`mt-2 text-sm ${textSecondaryClass}`}>
               {quizData.questions.length} questions to test your knowledge!
             </p>
+          </div>
+
+          {/* ETH address display with ConnectWallet */}
+          <div className="mb-6">
+            <ConnectWallet />
           </div>
 
           <button

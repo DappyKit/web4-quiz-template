@@ -33,6 +33,7 @@ export interface FarcasterUser {
   username?: string;
   displayName?: string;
   pfpUrl?: string;
+  ethAddress?: string; // Ethereum address of the user
 }
 
 /**

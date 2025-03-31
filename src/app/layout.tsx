@@ -2,6 +2,7 @@ import type { Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { FarcasterProvider } from "./components/FarcasterProvider";
+import { WagmiProvider } from "./components/WagmiProvider";
 import { metadata } from "./metadata";
 
 const geistSans = Geist({
@@ -67,9 +68,11 @@ export default function RootLayout({
         
         {/* Main Content */}
         <div className="relative z-10">
-          <FarcasterProvider>
-            {children}
-          </FarcasterProvider>
+          <WagmiProvider>
+            <FarcasterProvider>
+              {children}
+            </FarcasterProvider>
+          </WagmiProvider>
         </div>
         
         {/* Footer */}

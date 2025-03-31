@@ -26,6 +26,25 @@ export function shuffleOptions<T>(array: T[]): [T[], number] {
 }
 
 /**
+ * Truncates an Ethereum address to display format
+ * @param address - The full Ethereum address
+ * @param startChars - Number of characters to show at the start (default: 6)
+ * @param endChars - Number of characters to show at the end (default: 4)
+ * @returns The truncated address string
+ */
+export function truncateEthAddress(address: string, startChars = 6, endChars = 4): string {
+  if (!address) return '';
+  
+  // Make sure the address is a valid ethereum address format
+  if (!address.startsWith('0x') || address.length < 10) {
+    return address;
+  }
+  
+  // Return the truncated address
+  return `${address.substring(0, startChars)}...${address.substring(address.length - endChars)}`;
+}
+
+/**
  * Loads the configuration from config.json
  * @returns Promise that resolves to the theme configuration
  */
