@@ -1,4 +1,4 @@
-# 🧩 Dappy Quiz Template
+# Dappy Quiz Template
 
 ## What's This?
 
@@ -17,6 +17,31 @@ This is a template for creating interactive quizzes that can be integrated with 
 
 This project follows the [Web4 Apps Specification](https://github.com/DappyKit/web4-apps-specification) and can be imported into the [Web4 Apps platform](https://github.com/DappyKit/web4-apps). Web4 Apps is a platform that enables decentralized applications in a user-friendly ecosystem.
 
+Got it. Here's your original prompt at the top, followed by three **fully filled-in examples without brackets**:
+
+---
+
+## ✨ AI Prompt
+
+**[Topic]** — **[Advanced]** level — **[20]** questions  
+The first option is always correct. Make questions and options as short as possible, but clear.
+
+---
+
+### Examples:
+
+**JavaScript Basics** — **Beginner** level — **10** questions  
+The first option is always correct. Make questions and options as short as possible, but clear.
+
+---
+
+**Blockchain Security** — **Advanced** level — **15** questions  
+The first option is always correct. Make questions and options as short as possible, but clear.
+
+---
+
+**English Vocabulary: Animals** — **Intermediate** level — **12** questions  
+The first option is always correct. Make questions and options as short as possible, but clear.
 ## 📂 Project Structure
 
 ```
